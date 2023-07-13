@@ -20,7 +20,7 @@
                                 @break
                             @endif
 
-                          <li><a href="">{{ $item->post_title }}</a></li>
+                          <li><a href="{{ route('news_detail',$item->id)}}">{{ $item->post_title }}</a></li>
                           @endforeach
 
                         </ul>
