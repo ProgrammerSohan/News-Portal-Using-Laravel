@@ -37,35 +37,28 @@
                     </div>
                     <div class="item">
                         <b><i class="fas fa-clock"></i></b>
-                        25 February, 2022
+                       @php
+                           $ts = strtotime($post_detail->updated_at);
+                            $updated_date = date('d F, Y',$ts);
+                       @endphp
+                       {{ $updated_date }}
                     </div>
                     <div class="item">
                         <b><i class="fas fa-eye"></i></b>
-                        234
+                         {{$post_detail->visitors}}
                     </div>
                 </div>
                 <div class="main-text">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                    </p>
+                    {!! $post_detail->post_detail !!}
+
                 </div>
                 <div class="tag-section">
                     <h2>Tags</h2>
                     <div class="tag-section-content">
-                        <a href=""><span class="badge bg-success">business</span></a>
-                        <a href=""><span class="badge bg-success">politics</span></a>
-                        <a href=""><span class="badge bg-success">nice</span></a>
-                        <a href=""><span class="badge bg-success">good</span></a>
-                        <a href=""><span class="badge bg-success">finest</span></a>
+                        @foreach ($tag_data as $item)
+                        <a href=""><span class="badge bg-success">{{$item->tag_name}}</span></a>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="share-content">
