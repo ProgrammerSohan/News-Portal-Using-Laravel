@@ -34,9 +34,6 @@
 @endif
 
 
-
-
-
 <div class="home-main">
     <div class="container">
         <div class="row g-2">
@@ -52,19 +49,37 @@
                 <div class="inner">
                     <div class="photo">
                         <div class="bg"></div>
-                        <img src="{{ asset('uploads/n1.jpg') }}" alt="">
+                        <img src="{{ asset('uploads/'.$item->post_photo) }}" alt="">
                         <div class="text">
                             <div class="text-inner">
                                 <div class="category">
-                                    <span class="badge bg-success badge-sm">Politics</span>
+                                    <span class="badge bg-success badge-sm">
+                                        {{$item->rSubCategory->sub_category_name}}
+                                    </span>
                                 </div>
-           <h2><a href="">{{$item->post_title}}</a></h2>
+           <h2><a href="{{ route('news_detail',$item->id) }}">{{$item->post_title}}</a></h2>
                                 <div class="date-user">
                                     <div class="user">
-                                        <a href="">Paul David</a>
+                                        @if ($item->author_id==0)
+                                        @php
+                                          $user_data=  \App\Models\Admin::where('id',$item->admin_id)->first();
+                                        @endphp
+
+                                        @else
+
+
+                                            {{--I will work with this section later--}}
+                                        @endif
+
+                                        <a href="">{{ $user_data->name }}</a>
                                     </div>
                                     <div class="date">
-                                        <a href="">10 Jan, 2022</a>
+                                        @php
+                                        $ts = strtotime($item->updated_at);
+                                        $updated_date = date('d F, Y',$ts);
+                                    @endphp
+
+                                    <a href=""> {{$updated_date}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -92,19 +107,36 @@
                 <div class="inner inner-right">
                     <div class="photo">
                         <div class="bg"></div>
-                        <img src="{{ asset('uploads/n2.jpg') }}" alt="">
+                        <img src="{{ asset('uploads/'.$item->post_photo) }}" alt="">
                         <div class="text">
                             <div class="text-inner">
                                 <div class="category">
-                                    <span class="badge bg-success badge-sm">Politics</span>
+                                    <span class="badge bg-success badge-sm">
+                                        {{$item->rSubCategory->sub_category_name }}</span>
                                 </div>
-                                <h2><a href="">{{$item->post_title}}</a></h2>
+                                <h2><a href="{{ route('news_detail',$item->id) }}">{{$item->post_title}}</a></h2>
                                 <div class="date-user">
                                     <div class="user">
-                                        <a href="">Paul David</a>
+                                        @if ($item->author_id==0)
+                                        @php
+                                          $user_data=  \App\Models\Admin::where('id',$item->admin_id)->first();
+                                        @endphp
+
+                                        @else
+
+
+                                            {{--I will work with this section later--}}
+                                        @endif
+
+                                        <a href="">{{ $user_data->name }}</a>
                                     </div>
                                     <div class="date">
-                                        <a href="">10 Jan, 2022</a>
+                                        @php
+                                            $ts = strtotime($item->updated_at);
+                                            $updated_date = date('d F, Y',$ts);
+                                        @endphp
+
+                                        <a href=""> {{$updated_date}}</a>
                                     </div>
                                 </div>
                             </div>
